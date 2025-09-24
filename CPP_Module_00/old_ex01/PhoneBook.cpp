@@ -5,7 +5,6 @@
 // TODO: use getline instead of std::cin >>
 // create a fucntion that get input and tests if it not valid like when user click "CTRL+D"
 // reformat code
-
 class Contact {
 private:
   std::string firstn, lastn, nickname, num, secret; public:
@@ -39,6 +38,7 @@ private:
   std::string getDarkSecret(){
     return this->secret;
   }
+
   void printInfo ()
   {
     std::cout << "First Name: " << this->firstn << std::endl;
@@ -47,6 +47,7 @@ private:
     std::cout << "phone_number: " << this->num << std::endl;
     std::cout << "Dark Secret: " << this->secret << std::endl;
   };
+
   void createContact()
   {
     std::cout << "First Name: ";
@@ -68,7 +69,7 @@ class PhoneBook {
     char vdelim;
     void _columnTUI(std::string str, int len)
     {
-      int sp;
+      int sp = 0;
       int plen;
 
       if (len >= 10)
