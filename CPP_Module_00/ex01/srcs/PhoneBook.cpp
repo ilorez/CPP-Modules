@@ -38,7 +38,7 @@ std::string PhoneBook::_getUserField(std::string label)
 void PhoneBook::add_new_contact()
 {
   Contact c;
-  // get contact info rom user
+  // get contact info from user
   c.setFirstName(PhoneBook::_getUserField("First Name"));
   c.setLastName(PhoneBook::_getUserField("Last Name"));
   c.setNickName(PhoneBook::_getUserField("Nickname"));
@@ -50,7 +50,6 @@ void PhoneBook::add_new_contact()
     _i = 0;
   if (_len < PB_SIZE)
     _len += 1;
-  
 }
 
 void PhoneBook::_fieldPrint(std::string label, std::string value)

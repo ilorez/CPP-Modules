@@ -6,7 +6,7 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 18:56:14 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/09/25 20:16:42 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/09/25 20:55:14 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,7 @@
 #include "includes/PhoneBook.hpp"
 #include <cstdlib>
 
-std::string ftReadLine()
-{
-  std::string input;
-
-  if (!std::getline(std::cin, input))
-  {
-    std::cout << std::endl << "reach EOF, exit program" << std::endl;
-    exit(EXIT_FAILURE);
-  }
-  return input;
-}
+std::string ftReadLine();
 
 int main()
 {
@@ -32,6 +22,16 @@ int main()
   PhoneBook pb;
   std::string cmd;
 
+  if (PB_SIZE < 1)
+  {
+    std::cout << "there is no space in book, check PhoneBook size" << std::endl;
+    exit(EXIT_FAILURE);
+  }
+  if (UNIT_W < 9)
+  {
+    std::cout << "the table unit with is so small :<!" << std::endl;
+    exit(EXIT_FAILURE);
+  }
   while(true)
   {
     std::cout << "Write a Command: ";
@@ -62,4 +62,16 @@ int main()
     else
       std::cout << "command not found :<" << std::endl;
   }
+}
+
+std::string ftReadLine()
+{
+  std::string input;
+
+  if (!std::getline(std::cin, input))
+  {
+    std::cout << std::endl << "reach EOF, exit program" << std::endl;
+    exit(EXIT_FAILURE);
+  }
+  return input;
 }
