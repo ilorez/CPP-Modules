@@ -15,46 +15,46 @@
 // setters
 void Contact::setFirstName(std::string v)
 {
-  firstn = v;
+  _firstn = v;
 }
 
 void Contact::setLastName(std::string v)
 {
-  lastn = v;
+  _lastn = v;
 }
 
 void Contact::setNickName(std::string v)
 {
-  nickname = v;
+  _nickname = v;
 }
 void Contact::setPhoneNum(std::string v)
 {
-  num = v;
+  _num = v;
 }
 void Contact::setSecret(std::string v)
 {
-  secret = v;
+  _secret = v;
 }
 
 // getters
 std::string Contact::getFirstName() const{
-  return firstn;
+  return _firstn;
 }
 
 std::string Contact::getLastName() const{
-  return lastn;
+  return _lastn;
 }
 
 std::string Contact::getNickName() const{
-  return nickname;
+  return _nickname;
 }
 
 std::string Contact::getPhoneNum() const{
-  return num;
+  return _num;
 }
 
 std::string Contact::getSecret() const{
-  return secret;
+  return _secret;
 }
 // ========================
 

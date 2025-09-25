@@ -19,7 +19,7 @@
 class Contact {
 
   private:
-    std::string firstn, lastn, nickname, num, secret;
+    std::string _firstn, _lastn, _nickname, _num, _secret;
   public:
     //getters
     std::string getFirstName() const;

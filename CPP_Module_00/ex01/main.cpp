@@ -6,7 +6,7 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 18:56:14 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/09/25 19:36:39 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/09/25 20:16:42 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "includes/PhoneBook.hpp"
 #include <cstdlib>
 
-std::string ft_readline()
+std::string ftReadLine()
 {
   std::string input;
 
@@ -35,7 +35,7 @@ int main()
   while(true)
   {
     std::cout << "Write a Command: ";
-    cmd = ft_readline();
+    cmd = ftReadLine();
     if (cmd == "ADD")
         pb.add_new_contact();
     else if (cmd == "SEARCH")
@@ -48,7 +48,7 @@ int main()
           while (true)
           {
             std::cout << "write contact index to display, or 0 to back: ";
-            index = std::atoi(ft_readline().c_str());
+            index = std::atoi(ftReadLine().c_str());
             if (pb.display_contact(index))
               break;
           }
@@ -58,10 +58,6 @@ int main()
     {
       std::cout << "exit program" << std::endl;
       return (0);
-    }
-    else if (cmd == "test")
-    {
-      pb.display_contacts();
     }
     else
       std::cout << "command not found :<" << std::endl;

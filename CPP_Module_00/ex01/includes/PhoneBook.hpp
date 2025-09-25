@@ -6,7 +6,7 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 18:55:34 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/09/25 19:00:11 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/09/25 20:18:35 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ class PhoneBook {
     Contact _list[PB_SIZE];
     int _i;
     int _len;
-    std::string _get_user_field(std::string label);
-    void _field_print(std::string label, std::string value);
+    std::string _getUserField(std::string label);
+    std::string _truncate(std::string str);
+    void _fieldPrint(std::string label, std::string value);
+    void _formatColumn(int index, std::string firstn, std::string lastn, std::string nickn);
   public:
     PhoneBook();
     void add_new_contact();
     bool display_contact(int i); // if i == 0 return true, otherways false and display contact related to index if founded
     void show_contacts_table(); // search
     bool isempty();
-    // for just debug
-    void display_contacts();
 };
 #endif
 

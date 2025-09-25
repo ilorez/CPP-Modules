@@ -6,7 +6,7 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 18:52:43 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/09/25 19:36:22 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/09/25 20:20:21 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 // marcros
 #define PB_SIZE 3
+#define UNIT_W 10
 
 // includes
 #include <iostream>
