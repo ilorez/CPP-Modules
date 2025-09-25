@@ -6,7 +6,7 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 18:52:31 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/09/24 18:56:06 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/09/25 18:41:23 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #ifndef CONTACT_HPP
 #define CONTACT_HPP
 
-#include "./container.hpp"
+#include <iostream>
 
 class Contact {
 

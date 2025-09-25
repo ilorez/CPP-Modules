@@ -6,13 +6,32 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 18:55:34 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/09/24 18:55:59 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/09/25 19:00:11 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
+#include "./container.hpp"
+
+class PhoneBook {
+
+  private:
+    Contact _list[PB_SIZE];
+    int _i;
+    int _len;
+    std::string _get_user_field(std::string label);
+    void _field_print(std::string label, std::string value);
+  public:
+    PhoneBook();
+    void add_new_contact();
+    bool display_contact(int i); // if i == 0 return true, otherways false and display contact related to index if founded
+    void show_contacts_table(); // search
+    bool isempty();
+    // for just debug
+    void display_contacts();
+};
 #endif
 
 
