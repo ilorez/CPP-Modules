@@ -1,14 +1,13 @@
-NAME = Moar_brainz
+NAME = HI_THIS_IS_BRAIN
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 BUILD_DR = ./build/
-HEADERS =  Zombie.hpp
-SRCS = main.cpp Zombie.cpp zombieHorde.cpp 
+HEADERS =  
+SRCS = main.cpp  
 
 OBJS = $(addprefix $(BUILD_DR),$(SRCS:%.cpp=%.o))
-
 
 # colors
 green = \033[32m
