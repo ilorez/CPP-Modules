@@ -6,10 +6,9 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 17:59:50 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/09/25 20:21:56 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/09/28 15:04:08 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../includes/PhoneBook.hpp"
 
 PhoneBook::PhoneBook()
@@ -27,7 +26,7 @@ std::string PhoneBook::_getUserField(std::string label)
     std::cout << std::endl << "reach EOF, exit program" << std::endl;
     exit(EXIT_FAILURE);
   }
-  if (!input[0])
+  if (PhoneBook::_isEmpty(input))
   {
     std::cout << std::endl << "you can't leave " << label << " empty!" << std::endl;
     return PhoneBook::_getUserField(label);
@@ -112,3 +111,12 @@ bool PhoneBook::isempty()
   return (!_len);
 }
 
+bool PhoneBook::_isEmpty(const std::string str)
+{
+    for (size_t i = 0; i < str.length(); i++) {
+        if (!std::isspace(str[i])) {
+            return false; 
+        }
+    }
+    return true;
+}

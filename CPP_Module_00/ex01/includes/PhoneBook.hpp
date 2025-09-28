@@ -6,7 +6,7 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 18:55:34 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/09/25 20:18:35 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/09/28 15:00:28 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class PhoneBook {
     std::string _truncate(std::string str);
     void _fieldPrint(std::string label, std::string value);
     void _formatColumn(int index, std::string firstn, std::string lastn, std::string nickn);
+    bool _isEmpty(const std::string str);
   public:
     PhoneBook();
     void add_new_contact();
