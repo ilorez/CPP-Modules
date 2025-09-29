@@ -6,7 +6,7 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 16:26:00 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/09/28 17:01:46 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/09/29 15:18:24 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,4 @@ int main(int ac, char **av)
     }
     level = av[1];
     that_one_guy.complain(level);
-
 }
