@@ -6,7 +6,7 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 18:56:14 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/09/28 15:39:23 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/11/05 11:26:21 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,15 @@ int main(int ac, char **av)
   if (filename.empty() || s1.empty())
   {
     std::cerr << "Error: Argumnets filename and s1 should not be empty" << std::endl;
+    return (EXIT_FAILURE);
   }
 
   // open and readinput from file
   std::ifstream readFile(filename.c_str());
-  if (!readFile.is_open()){
+  if (!readFile.is_open())
+  {
     std::cerr << "Error: Could not open the file!" << std::endl;
+    return (EXIT_FAILURE);
   }
 
   // read file content as string
@@ -67,6 +70,7 @@ int main(int ac, char **av)
   std::ofstream writeFile(new_filename.c_str());
   if (!writeFile.is_open()){
     std::cerr << "Error: Could not open the file!" << std::endl;
+    return (EXIT_FAILURE);
   }
 
   // write all line to the new open file

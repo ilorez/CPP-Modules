@@ -6,11 +6,14 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 22:23:44 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/09/27 22:44:39 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/11/07 15:18:20 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./Zombie.hpp"
+
+
+Zombie::Zombie(std::string name):_name(name){};
 
 void Zombie::announce(void) const
 {

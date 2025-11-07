@@ -6,7 +6,7 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 22:40:57 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/09/27 23:02:53 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/11/05 11:05:02 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 int main()
 {
-  Zombie *z = zombieHorde(10, "Ilorez");
-  for (int i = 0; i < 10; i++)
-  {
+  Zombie *z = zombieHorde(ZN, "Ilorez");
+  for (int i = 0; i < ZN; i++)
     z[i].announce();
-  }
   delete[] z;
 }

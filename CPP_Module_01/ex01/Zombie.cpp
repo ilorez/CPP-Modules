@@ -6,7 +6,7 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 22:23:44 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/09/27 23:04:50 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/11/07 15:19:49 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void Zombie::announce(void) const
 {
   std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
+
+Zombie::Zombie(std::string name):_name(name){};
 
 Zombie::~Zombie(){
   std::cout << getZombieName() << ": Has Destroyed" << std::endl;

@@ -6,7 +6,7 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 14:12:07 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/09/28 14:32:25 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/11/07 15:20:54 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class HumanA {
 public:
   std::string _name;
   Weapon& _weapon;
-  HumanA(std::string name, Weapon& weapon):_name(name), _weapon(weapon){}
+  HumanA(std::string name, Weapon& weapon);
   void attack() const;
 };
 #endif
