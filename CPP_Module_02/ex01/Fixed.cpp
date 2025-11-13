@@ -6,19 +6,21 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 16:18:32 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/10/01 18:41:25 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/11/13 15:52:29 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <cmath>
 
+// default constructor
 Fixed::Fixed()
 {
   std::cout << "Default constructor called" << std::endl;
   _value = 0;
 }
 
+// copy constructor
 Fixed::Fixed(const Fixed &copy)
 {
   std::cout << "Copy constructor called" << std::endl;

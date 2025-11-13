@@ -6,26 +6,19 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 16:18:46 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/11/13 15:51:21 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/11/13 16:51:13 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-
 int main( void ) {
   Fixed a;
-  Fixed const b( 10 );
-  Fixed const c( 42.42f );
-  Fixed const d( b );
-  a = Fixed( 1234.4321f );
-  std::cout << "a is " << a << std::endl;
-  std::cout << "b is " << b << std::endl;
-  std::cout << "c is " << c << std::endl;
-  std::cout << "d is " << d << std::endl;
-  std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-  std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-  std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-  std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+  Fixed b;
+  Fixed c;
+  a = Fixed( 5 );
+  b = Fixed( 2.5f );
+  c = b * a;
+  std::cout << "c is " << c.toFloat() << std::endl;
   return 0;
 }
 
