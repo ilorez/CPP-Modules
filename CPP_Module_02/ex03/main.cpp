@@ -6,11 +6,10 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 16:18:46 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/12/17 16:49:42 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/12/17 16:56:18 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Point.hpp"
-bool bsp( Point const a, Point const b, Point const c, Point const point);
 
 /*
 int main(void)
@@ -27,8 +26,8 @@ int main(void)
     std::cout << bsp(a, b, c, Point(0.1f, 0.1f)) << std::endl;  // 1
     std::cout << bsp(a, c, b, Point(2, 2)) << std::endl;   // 1
 }
-*/
 
+*/
 
 
 int main(void)

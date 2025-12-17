@@ -6,7 +6,7 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 10:39:52 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/12/17 16:31:32 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/12/17 16:53:13 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ class Point {
     Point(const float x, const float y);
     Point& operator=(const Point& copy);
     ~Point();
-    Fixed getX(void) const;
-    Fixed getY(void) const;
+    const Fixed getX(void) const;
+    const Fixed getY(void) const;
 };
+
+bool bsp( Point const a, Point const b, Point const c, Point const point);
+
 #endif

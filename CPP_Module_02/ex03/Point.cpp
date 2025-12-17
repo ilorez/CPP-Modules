@@ -17,12 +17,12 @@ Point& Point::operator=(const Point &copy)
 }
 
 // getters
-Fixed Point::getX(void) const
+const Fixed Point::getX(void) const
 {
   return (_x);
 }
 
-Fixed Point::getY(void) const
+const Fixed Point::getY(void) const
 {
   return (_y);
 }
