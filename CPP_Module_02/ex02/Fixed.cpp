@@ -4,7 +4,12 @@
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */ /*   Created: 2025/10/01 16:18:32 by znajdaou          #+#    #+#             */ /*   Updated: 2025/11/13 15:52:29 by znajdaou         ###   ########.fr       */ /*                                                                            */ /* ************************************************************************** */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/17 09:54:55 by znajdaou          #+#    #+#             */
+/*   Updated: 2025/12/17 09:57:23 by znajdaou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 #include <cmath>
 
@@ -129,4 +134,66 @@ Fixed Fixed::operator/(const Fixed& right) const {
     Fixed tmp;
     tmp.setRawBits((this->getRawBits() << _fract_bits) / right.getRawBits());
     return tmp;
+}
+
+// pre/post - inc/dec 
+
+// pre increment
+Fixed& Fixed::operator++()
+{
+  ++_value;
+  return (*this);
+}
+
+
+// pre decrement
+Fixed& Fixed::operator--()
+{
+  --_value;
+  return (*this);
+}
+
+// post decrement
+Fixed Fixed::operator--(int)
+{
+  Fixed tmp(*this);
+  --_value;
+  return (tmp);
+}
+
+// post increment
+Fixed Fixed::operator++(int)
+{
+  Fixed tmp(*this);
+  ++_value;
+  return (tmp);
+}
+
+// min/max * (const + 1)
+Fixed& Fixed::min(Fixed& a, Fixed& b)
+{
+  if (a < b)
+    return a;
+  return b;
+}
+
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
+{
+  if (a < b)
+    return a;
+  return b;
+}
+
+Fixed& Fixed::max(Fixed& a, Fixed& b)
+{
+  if (a > b)
+    return a;
+  return b;
+}
+
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
+{
+  if (a > b)
+    return a;
+  return b;
 }

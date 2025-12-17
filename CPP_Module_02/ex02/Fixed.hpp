@@ -6,7 +6,7 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:58:37 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/11/13 16:57:10 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/12/17 09:55:17 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,15 @@ class Fixed {
     Fixed operator*(const Fixed& right) const;
     Fixed operator/(const Fixed& right) const;
     // (pre/post)increment/decrement
+    Fixed& operator++();
+    Fixed& operator--();
+    Fixed operator++(int);
+    Fixed operator--(int);
+    // min/max * (const + 1)
+    static Fixed& min(Fixed& a, Fixed& b);
+    static Fixed& max(Fixed& a, Fixed& b);
+    static const Fixed& min(const Fixed& a, const Fixed& b);
+    static const Fixed& max(const Fixed& a, const Fixed& b);
     
   
     float toFloat(void) const;
