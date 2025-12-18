@@ -12,9 +12,8 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
   Fixed l1 = sign(point, a, b);
   Fixed l2 = sign(point, b, c);
   Fixed l3 = sign(point, c, a);
-  if (l1 < 0 && l2 < 0 && l3 < 0)
-    return (true);
-  else if (l1 > 0 && l2 > 0 && l3 > 0)
+  if ((l1 < 0 && l2 < 0 && l3 < 0)
+    || (l1 > 0 && l2 > 0 && l3 > 0))
     return true;
   return false;
 }

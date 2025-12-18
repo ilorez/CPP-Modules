@@ -12,7 +12,9 @@ Point::Point(const Point &copy):_x(copy._x), _y(copy._y){};
 //Point Point::operator=(const Point &copy){}:_x(copy._x), _y(copy._y){;
 Point& Point::operator=(const Point &copy)
 {
-  (void)copy;
+  if (this == &copy)
+    return (*this);
+  // you can't not copy because its const
   return (*this);
 }
 
