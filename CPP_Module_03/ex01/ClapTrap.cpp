@@ -6,7 +6,7 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 16:18:32 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/12/19 23:18:22 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/12/19 23:17:18 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& copy) {
     _energy_points = copy._energy_points;
     _attack_damage = copy._attack_damage;
   }
+
   std::cout << "ClapTrap " << _name << ": Copy assignment operator called" << std::endl;
   return (*this);
 }
