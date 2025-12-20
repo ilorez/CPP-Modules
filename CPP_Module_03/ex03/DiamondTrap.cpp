@@ -18,6 +18,7 @@ DiamondTrap::DiamondTrap(): ClapTrap("default_clap_name"), _name("Default")
 
 DiamondTrap::DiamondTrap(DiamondTrap &copy): ClapTrap(copy), ScavTrap(copy), FragTrap(copy) 
 {
+  this->_name = copy._name;
   std::cout << "DiamondTrap " << copy._name << ": copy constructor called" << std::endl;
 }
 
