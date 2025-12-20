@@ -1,11 +1,11 @@
 NAME = weird 
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS =  -Wall -Wextra -Werror -std=c++98 #-Wshadow 
 RM = rm -f
 BUILD_DR = ./build/
-HEADERS = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+HEADERS = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
+SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 
 OBJS = $(addprefix $(BUILD_DR),$(SRCS:%.cpp=%.o))
 

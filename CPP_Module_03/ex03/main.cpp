@@ -6,12 +6,55 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 16:18:46 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/12/19 23:33:55 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/12/20 16:38:26 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
+int main()
+{
+    std::cout << "===== 1. THE DIAMOND CONSTRUCTION =====" << std::endl;
+    {
+        // LOOK CLOSELY AT THE OUTPUT:
+        // ClapTrap should only be constructed ONCE.
+        // If it constructs twice, your virtual inheritance is broken.
+        DiamondTrap diamond("D14-M0ND");
+        std::cout << "\n--- Testing Attributes (Expectations: HP 100, EP 50, AD 30) ---" << std::endl;
+        
+        // These calls verify it can perform actions from all parents
+        diamond.whoAmI();           // DiamondTrap unique
+        diamond.attack("a thief");  // Must be ScavTrap's attack
+        diamond.guardGate();        // From ScavTrap
+        diamond.highFivesGuys();     // From FragTrap
+
+        std::cout << "\n--- Testing Damage/Repair ---" << std::endl;
+        diamond.takeDamage(40);
+        diamond.beRepaired(20);
+        
+        std::cout << "\n--- Destruction Sequence ---" << std::endl;
+    } // ClapTrap must be destroyed only ONCE at the very end.
+
+    std::cout << "\n===== 2. NAME SHADOWING TEST =====" << std::endl;
+    DiamondTrap obscure("Shadow");
+    obscure.whoAmI(); 
+    // You should see two different names: 
+    // One is "Shadow", the other is "Shadow_clap_name"
+
+    std::cout << "\n===== 3. CANONICAL FORM =====" << std::endl;
+    DiamondTrap original("Alpha");
+    std::cout << "---------" << std::endl;
+    DiamondTrap copy(original);
+    std::cout << "---------" << std::endl;
+    DiamondTrap assigned("Beta");
+    assigned = copy;
+    assigned.whoAmI();
+
+    std::cout << "\n===== END OF TESTS =====" << std::endl;
+    return 0;
+}
+/*
+#include "FragTrap.hpp"
 int main()
 {
     std::cout << "===== 1. FRAGTRAP CONSTRUCTION =====" << std::endl;
@@ -56,7 +99,6 @@ int main()
     std::cout << "\n===== 7. END OF TESTS =====" << std::endl;
     return 0;
 }
-/*
 #include "ScavTrap.hpp"
 
 int main()
