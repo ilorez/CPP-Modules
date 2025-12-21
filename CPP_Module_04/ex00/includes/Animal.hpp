@@ -19,7 +19,7 @@ class Animal {
     virtual void makeSound() const;
 
     // getters
-    std::string getType() const;
+    const std::string getType() const;
   
 };
 

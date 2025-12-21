@@ -9,8 +9,8 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes
 RM = rm -rf
 BUILD_DR = ./build/
-HEADERS = Animal.hpp Dog.hpp Cat.hpp
-SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp
+HEADERS = Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
+SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 
 OBJS = $(addprefix $(BUILD_DR),$(SRCS:%.cpp=%.o))
 

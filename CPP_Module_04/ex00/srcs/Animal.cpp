@@ -1,7 +1,7 @@
 #include "../includes/Animal.hpp"
 
 // Constructors
-Animal::Animal():_type("unkown"){
+Animal::Animal():_type("NoAnimal"){
   std::cout << "Animal default constructor '" << _type << "' called!" << std::endl;
 };
 
@@ -33,11 +33,11 @@ Animal::~Animal(){
 // member functions
 void Animal::makeSound() const
 {
-  std::cout << "$ I have forgot my sound $" << std::endl;
+  std::cout << "$ Animal: what is sound ? $" << std::endl;
 }
 
 // getters
-std::string Animal::getType() const
+const std::string Animal::getType() const
 {
   return (this->_type);
 }
