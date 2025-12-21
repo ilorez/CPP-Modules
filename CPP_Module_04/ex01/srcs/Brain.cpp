@@ -6,13 +6,13 @@ Brain::Brain(){
 };
 
 
-Brain::Brain(Brain &copy){
+Brain::Brain(const Brain &copy){
   *this = copy;
   std::cout << "Brain Copy Constructor called!" << std::endl;
 }
 
 // Operators Overloading - assignment  
-Brain& Brain::operator=(Brain &copy)
+Brain& Brain::operator=(const Brain &copy)
 {
   if (this != &copy)
   {
@@ -30,11 +30,21 @@ Brain::~Brain(){
 // getters and setters
 void Brain::setIdea(int index, std::string value)
 {
+  if (index < 0 || index >= BRAINSIZE)
+  {
+    std::cout << "You can't get idea, the index: " << index << " is out of range!" << std::endl;
+    return;
+  }
   _ideas[index] = value;
 }
 
 const std::string Brain::getIdea(int index) const
 {
+  if (index < 0 || index >= BRAINSIZE)
+  {
+    std::cout << "You can't get idea, the index: " << index << " is out of range!" << std::endl;
+    return "";
+  }
   return (_ideas[index]);
 }
 

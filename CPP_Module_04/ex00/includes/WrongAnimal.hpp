@@ -9,8 +9,8 @@ class WrongAnimal {
     // Orthodox Canonical Form
     WrongAnimal();
     ~WrongAnimal();
-    WrongAnimal(WrongAnimal &copy);
-    WrongAnimal& operator=(WrongAnimal &copy);
+    WrongAnimal(const WrongAnimal &copy);
+    WrongAnimal& operator=(const WrongAnimal &copy);
 
     // Custom Constructors
     WrongAnimal(std::string type);

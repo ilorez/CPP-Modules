@@ -2,30 +2,30 @@
 
 // Constructors
 Cat::Cat():Animal("Cat"){
-  std::cout << "Cat default constructor '" << _type << "' called!" << std::endl;
   _brain = new Brain();
+  std::cout << "Cat default constructor '" << _type << "' called!" << std::endl;
 };
 
 Cat::Cat(std::string type): Animal(type){
-  std::cout << "Cat Custom constructor '" << _type << "' called!" << std::endl;
   _brain = new Brain();
+  std::cout << "Cat Custom constructor '" << _type << "' called!" << std::endl;
 }
 
-Cat::Cat(Cat &copy): Animal(copy){
+Cat::Cat(const Cat &copy): Animal(copy){
+  this->_brain = new Brain(*(copy._brain));
   std::cout << "Cat Copy Constructor '" << _type << "' called!" << std::endl;
-  *this = copy;
 }
 
 // Operators Overloading - assignment  
-Cat& Cat::operator=(Cat &copy)
+Cat& Cat::operator=(const Cat &copy)
 {
-  std::cout << "Cat Assignment OPO Constructors '" << _type << "' called!" << std::endl;
   if (this != &copy)
   {
     Animal::operator=(copy);
-    //delete _brain; // stupid line XD
+    delete this->_brain;
     this->_brain = new Brain(*(copy._brain));
   }
+  std::cout << "Cat Assignment OPO Constructors '" << _type << "' called!" << std::endl;
   return (*this);
 }
 

@@ -3,36 +3,36 @@
 
 // Constructors
 Dog::Dog():Animal("Dog"){
-  std::cout << "Dog default constructor '" << _type << "' called!" << std::endl;
   _brain = new Brain();
+  std::cout << "Dog default constructor '" << _type << "' called!" << std::endl;
 };
 
 Dog::Dog(std::string type): Animal(type){
-  std::cout << "Dog Custom constructor '" << _type << "' called!" << std::endl;
   _brain = new Brain();
+  std::cout << "Dog Custom constructor '" << _type << "' called!" << std::endl;
 }
 
-Dog::Dog(Dog &copy): Animal(copy){
+Dog::Dog(const Dog &copy): Animal(copy){
+  this->_brain = new Brain(*copy._brain);
   std::cout << "Dog Copy Constructor '" << _type << "' called!" << std::endl;
-  *this = copy;
 }
 
 // Operators Overloading - assignment  
-Dog& Dog::operator=(Dog &copy)
+Dog& Dog::operator=(const Dog &copy)
 {
-  std::cout << "Dog Assignment OPO Constructors '" << _type << "' called!" << std::endl;
   if (this != &copy)
   {
     Animal::operator=(copy);
-    delete _brain;
+    delete this->_brain;
     this->_brain = new Brain(*copy._brain);
   }
+  std::cout << "Dog Assignment OPO Constructors '" << _type << "' called!" << std::endl;
   return (*this);
 }
 
 Dog::~Dog(){
-  std::cout << "Dog Destractor '" << _type << "' called!" << std::endl;
   delete _brain;
+  std::cout << "Dog Destractor '" << _type << "' called!" << std::endl;
 }
 
 // member functions

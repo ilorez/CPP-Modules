@@ -10,13 +10,13 @@ Animal::Animal(std::string type): _type(type){
 }
 
 
-Animal::Animal(Animal &copy){
+Animal::Animal(const Animal &copy){
   *this = copy;
   std::cout << "Animal Copy Constructor '" << _type << "' called!" << std::endl;
 }
 
 // Operators Overloading - assignment  
-Animal& Animal::operator=(Animal &copy)
+Animal& Animal::operator=(const Animal &copy)
 {
   if (this != &copy)
   {

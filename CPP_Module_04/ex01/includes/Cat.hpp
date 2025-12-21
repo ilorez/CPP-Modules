@@ -10,8 +10,8 @@ class Cat: public Animal {
     // Orthodox Canonical Form
     Cat();
     ~Cat();
-    Cat(Cat &copy);
-    Cat& operator=(Cat &copy);
+    Cat(const Cat &copy);
+    Cat& operator=(const Cat &copy);
 
     // Custom Constructors
     Cat(std::string type);

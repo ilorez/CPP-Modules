@@ -5,7 +5,7 @@
 
 int main()
 {
-  /*
+  //*
   {
     const Animal* meta = new Animal();
     const Animal* i = new Cat();
@@ -24,7 +24,7 @@ int main()
     return 0;
   }
   // */
-  //*
+  /*
   {
     std::cout << "=== Creating WrongAnimal ===\n";
     WrongAnimal animal;

@@ -9,8 +9,8 @@ class Animal {
     // Orthodox Canonical Form
     Animal();
     virtual ~Animal();
-    Animal(Animal &copy);
-    Animal& operator=(Animal &copy);
+    Animal(const Animal &copy);
+    Animal& operator=(const Animal &copy);
 
     // Custom Constructors
     Animal(std::string type);

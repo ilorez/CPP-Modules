@@ -10,8 +10,8 @@ class Dog: public Animal {
     // Orthodox Canonical Form
     Dog();
     ~Dog();
-    Dog(Dog &copy);
-    Dog& operator=(Dog &copy);
+    Dog(const Dog &copy);
+    Dog& operator=(const Dog &copy);
 
     // Custom Constructors
     Dog(std::string type);

@@ -1,16 +1,7 @@
 
 #include "./includes/Dog.hpp"
 #include "./includes/Cat.hpp"
-
-int main()
-{
-    Cat original;
-    //original.getBrain()->setIdea(0, "Sleep all day");
-
-    std::cout << "-----------" << std::endl;
-    Cat copy(original); // copy constructor
-}
-/*
+//*
 int main()
 {
     std::cout << "========== EX01 MAIN TEST ==========\n" << std::endl;

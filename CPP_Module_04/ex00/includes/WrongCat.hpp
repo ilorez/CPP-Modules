@@ -7,8 +7,8 @@ class WrongCat: public WrongAnimal {
     // Orthodox Canonical Form
     WrongCat();
     ~WrongCat();
-    WrongCat(WrongCat &copy);
-    WrongCat& operator=(WrongCat &copy);
+    WrongCat(const WrongCat &copy);
+    WrongCat& operator=(const WrongCat &copy);
 
     // Custom Constructors
     WrongCat(std::string type);

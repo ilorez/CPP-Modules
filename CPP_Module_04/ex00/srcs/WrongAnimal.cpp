@@ -10,13 +10,13 @@ WrongAnimal::WrongAnimal(std::string type): _type(type){
 }
 
 
-WrongAnimal::WrongAnimal(WrongAnimal &copy){
+WrongAnimal::WrongAnimal(const WrongAnimal &copy){
   *this = copy;
   std::cout << "WrongAnimal Copy Constructor '" << _type << "' called!" << std::endl;
 }
 
 // Operators Overloading - assignment  
-WrongAnimal& WrongAnimal::operator=(WrongAnimal &copy)
+WrongAnimal& WrongAnimal::operator=(const WrongAnimal &copy)
 {
   if (this != &copy)
   {

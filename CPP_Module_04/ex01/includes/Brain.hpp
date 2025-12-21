@@ -10,9 +10,9 @@ class Brain {
   public:
     // Orthodox Canonical Form
     Brain();
-    virtual ~Brain();
-    Brain(Brain &copy);
-    Brain& operator=(Brain &copy);
+    ~Brain();
+    Brain(const Brain &copy);
+    Brain& operator=(const Brain &copy);
 
     // getters
     const std::string getIdea(int index) const;

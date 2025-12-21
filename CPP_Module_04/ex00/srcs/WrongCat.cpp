@@ -9,16 +9,16 @@ WrongCat::WrongCat(std::string type): WrongAnimal(type){
   std::cout << "WrongCat Custom constructor '" << _type << "' called!" << std::endl;
 }
 
-WrongCat::WrongCat(WrongCat &copy): WrongAnimal(copy){
+WrongCat::WrongCat(const WrongCat &copy): WrongAnimal(copy){
   std::cout << "WrongCat Copy Constructor '" << _type << "' called!" << std::endl;
 }
 
 // Operators Overloading - assignment  
-WrongCat& WrongCat::operator=(WrongCat &copy)
+WrongCat& WrongCat::operator=(const WrongCat &copy)
 {
-  std::cout << "WrongCat Assignment OPO Constructors '" << _type << "' called!" << std::endl;
   if (this != &copy)
     WrongAnimal::operator=(copy);
+  std::cout << "WrongCat Assignment OPO Constructors '" << _type << "' called!" << std::endl;
   return (*this);
 }
 
