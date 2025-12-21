@@ -25,6 +25,7 @@ Animal& Animal::operator=(const Animal &copy)
   std::cout << "Animal Assignment OPO Constructors '" << _type << "' called!" << std::endl;
   return (*this);
 }
+
 // Destractor
 Animal::~Animal(){
   std::cout << "Animal Destractor '" << _type << "' called!" << std::endl;

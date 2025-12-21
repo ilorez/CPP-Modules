@@ -18,7 +18,7 @@ class Brain {
     const std::string getIdea(int index) const;
 
     // setters
-    void setIdea(int index, std::string value);
+    void setIdea(int index, std::string &value);
 };
 
 #endif

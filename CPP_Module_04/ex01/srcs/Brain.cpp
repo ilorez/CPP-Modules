@@ -28,7 +28,7 @@ Brain::~Brain(){
 }
 
 // getters and setters
-void Brain::setIdea(int index, std::string value)
+void Brain::setIdea(int index, std::string &value)
 {
   if (index < 0 || index >= BRAINSIZE)
   {
