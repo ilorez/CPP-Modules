@@ -9,7 +9,7 @@
 class Character: public ICharacter {
   private:
     std::string _name;
-    AMateria *_slots[CSLOTS];
+    AMateria *_inventory[CSLOTS];
     bool _isSlotUsed[CSLOTS]; // false if slot is empty 
   public:
     // Orthodox Canonical Form

@@ -24,12 +24,12 @@ Character& Character::operator=(Character const &copy)
     {
       if (_isSlotUsed[i])
       {
-        delete _slots[i];
+        delete _inventory[i];
         _isSlotUsed[i] = copy._isSlotUsed[i];
         if (_isSlotUsed[i])
-          _slots[i] = copy._slots[i]->clone();
+          _inventory[i] = copy._inventory[i]->clone();
         else
-          _slots[i] = NULL;
+          _inventory[i] = NULL;
       }
     }
     this->_name = copy._name;
@@ -51,7 +51,7 @@ void Character::equip(AMateria* m)
   {
     if (!_isSlotUsed[i])
     {
-      _slots[i] = m;
+      _inventory[i] = m;
       _isSlotUsed[i] = true;
       return;
     }
@@ -72,10 +72,10 @@ void Character::unequip(int idx)
   }
 
   Floor* tmp = new Floor; 
-  tmp->value = _slots[idx];
+  tmp->value = _inventory[idx];
   tmp->next = floor;
   floor = tmp;
-  _slots[idx] = NULL;
+  _inventory[idx] = NULL;
   _isSlotUsed[idx] = false;
 }
 
@@ -91,7 +91,7 @@ void Character::use(int idx, ICharacter& target)
     std::cout << this->_name << " use: slot is empty" << std::endl;
     return ;
   }
-  _slots[idx]->use(target);
+  _inventory[idx]->use(target);
 }
 
 // floor

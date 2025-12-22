@@ -32,3 +32,7 @@ const std::string& AMateria::getType() const
 
 // member fuctions
 void AMateria::use(ICharacter& target){}
+
+AMateria *ice = new Ice();
+AMateria *cure = new Cure();
+cure = ice;
