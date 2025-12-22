@@ -1,6 +1,7 @@
 
 #include "../includes/Character.hpp"
 #include "../includes/Floor.hpp"
+#include "../includes/Colors.hpp"
 
 static Floor* floor;
 // constructors
@@ -62,12 +63,12 @@ void Character::unequip(int idx)
 {
   if (idx < 0 || idx >= CSLOTS)
   {
-    std::cout << this->_name << " unequip: invalid index" << std::endl;
+    std::cerr << ERROR_MSG << this->_name << " unequip: invalid index" << std::endl;
     return;
   }
   if (!_isSlotUsed[idx])
   {
-    std::cout << this->_name << " unequip: slot is empty" << std::endl;
+    std::cerr << WARNING_MSG << this->_name << " unequip: slot is empty" << std::endl;
     return ;
   }
 
@@ -83,12 +84,12 @@ void Character::use(int idx, ICharacter& target)
 {
   if (idx < 0 || idx >= CSLOTS)
   {
-    std::cout << this->_name << " use: invalid index" << std::endl;
+    std::cerr << ERROR_MSG << this->_name << " use: invalid index" << std::endl;
     return;
   }
   if (!_isSlotUsed[idx])
   {
-    std::cout << this->_name << " use: slot is empty" << std::endl;
+    std::cerr << WARNING_MSG << this->_name << " use: slot is empty" << std::endl;
     return ;
   }
   _inventory[idx]->use(target);

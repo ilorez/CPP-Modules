@@ -6,20 +6,7 @@ AMateria::AMateria():_type("NoAnimal"){
 
 AMateria::AMateria(std::string const &type): _type(type){}
 
-AMateria::AMateria(const AMateria &copy){
-  *this = copy;
-}
-
-// Operators Overloading - assignment  
-AMateria& AMateria::operator=(const AMateria &copy)
-{
-  if (this != &copy)
-  {
-    //delete this;
-    *this = *copy.clone();
-  }
-  return (*this);
-}
+AMateria::AMateria(const AMateria &copy):_type(copy._type){}
 
 // Destractor
 AMateria::~AMateria(){}
@@ -31,8 +18,8 @@ const std::string& AMateria::getType() const
 }
 
 // member fuctions
-void AMateria::use(ICharacter& target){}
+void AMateria::use(ICharacter& target){(void) target;}
 
-AMateria *ice = new Ice();
-AMateria *cure = new Cure();
-cure = ice;
+//AMateria *ice = new Ice();
+//AMateria *cure = new Cure();
+//cure = ice;

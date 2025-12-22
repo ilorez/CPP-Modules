@@ -4,18 +4,11 @@
 // constructors
 Ice::Ice():AMateria("ice"){};
 Ice::Ice(std::string const &type):AMateria(type){};
-Ice::Ice(Ice const &copy){
-  *this = copy;
-};
+Ice::Ice(Ice const &copy):AMateria(copy){};
+
 // assignment operator overloading 
-Ice& Ice::operator=(Ice const &copy)
-{
-  if (&copy != this)
-  {
-    AMateria::operator=(copy);
-  }
-  return (*this);
-}
+// forbidden
+
 // destructor
 Ice::~Ice(){};
 

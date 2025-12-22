@@ -10,9 +10,13 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes
 RM = rm -rf
 BUILD_DR = ./build/
 
-HEADERS = Animal.hpp Dog.hpp Cat.hpp Brain.hpp
+HEADERS = Character.hpp Cure.hpp ICharacter.hpp Colors.hpp \
+					Floor.hpp IMateriaSource.hpp AMateria.hpp Container.hpp \
+					Ice.hpp MateriaSource.hpp 
+F_SRCS = AMateria.cpp Cure.cpp IMeteriaSource.cpp Character.cpp \
+				 Ice.cpp MeteriaSource.cpp
 
-SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
+SRCS = main.cpp $(F_SRCS) 
 
 OBJS = $(addprefix $(BUILD_DR),$(SRCS:%.cpp=%.o))
 

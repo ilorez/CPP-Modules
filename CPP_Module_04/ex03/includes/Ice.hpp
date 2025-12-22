@@ -10,7 +10,7 @@ class Ice: public AMateria {
     Ice();
     ~Ice();
     Ice(const Ice &copy);
-    Ice& operator=(const Ice &copy);
+    // Ice& operator=(const Ice &copy);
 
     // Custom Constructors
     Ice(std::string const &type);

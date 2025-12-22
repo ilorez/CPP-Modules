@@ -1,5 +1,5 @@
 
-#include "../includes/MateriaSource.hpp"
+#include "../includes/Container.hpp"
 
 
 // constructors
@@ -25,7 +25,7 @@ void MateriaSource::learnMateria(AMateria* m)
 {
   if (!m)
   {
-    std::cout << "learnMateria: matria is invalid" << std::endl;
+    std::cerr << ERROR_MSG << "learnMateria: matria is invalid" << std::endl;
     return;
   }
   for (int i=0; i < MSLOTS; i++)
@@ -33,11 +33,11 @@ void MateriaSource::learnMateria(AMateria* m)
     if (!_knowledge_book[i])
     {
       _knowledge_book[i] = m->clone();
-      std::cout << "learnMateria: new matria of type " << m->getType() << " has been learned" << std::endl;
+      std::cout << INFO_MSG << "learnMateria: new matria of type " << m->getType() << " has been learned" << std::endl;
       return ;
     }
   }
-  std::cout << "learnMateria: materia couldn't learned because no slots left" << std::endl;
+  std::cerr << WARNING_MSG << "learnMateria: materia couldn't learned because no slots left" << std::endl;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)
@@ -47,7 +47,7 @@ AMateria* MateriaSource::createMateria(std::string const & type)
     if (_knowledge_book[i] && _knowledge_book[i]->getType() == type)
       return (_knowledge_book[i]->clone());
   }
-  std::cout << "createMateria: materia type is unknown" << std::endl;
+  std::cerr << WARNING_MSG << "createMateria: materia type is unknown" << std::endl;
   return (0);
 }
 

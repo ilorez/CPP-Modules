@@ -34,5 +34,11 @@
 #define BG_CYAN    "\033[46m"
 #define BG_WHITE   "\033[47m"
 
+// Predefined formatted labels
+#define ERROR_MSG   RED "[ERROR] " RESET
+#define WARNING_MSG YELLOW "[WARNING] " RESET
+#define INFO_MSG    CYAN "[INFO] " RESET
+#define SUCCESS_MSG GREEN "[SUCCESS] " RESET
+
 #endif // COLORS_HPP
 
