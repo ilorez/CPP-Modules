@@ -1,18 +1,27 @@
 
 #include "../includes/Container.hpp"
 
-
 // constructors
-MateriaSource::MateriaSource(){};
-MateriaSource::MateriaSource(MateriaSource const &copy){
-  *this = copy;
+MateriaSource::MateriaSource(){
+  for (int i=0; i < MSLOTS; i++)
+    _knowledge_book[i] = NULL;
 };
+MateriaSource::MateriaSource(MateriaSource const &copy) { *this = copy; };
+
 // assignment operator overloading 
 MateriaSource& MateriaSource::operator=(MateriaSource const &copy)
 {
   if (&copy != this)
   {
-    // TODO:deep copy
+    for (int i=0; i < MSLOTS; i++)
+    {
+      if (this->_knowledge_book[i])
+          delete this->_knowledge_book[i];
+      if (copy._knowledge_book[i])
+        _knowledge_book[i] = copy._knowledge_book[i]->clone();
+      else
+        _knowledge_book[i] = NULL;
+    }
   }
   return (*this);
 }
