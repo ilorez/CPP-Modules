@@ -1,29 +1,9 @@
 #include "./includes/Container.hpp"
-/*
-int main()
-{
-  IMateriaSource* src = new MateriaSource();
-  src->learnMateria(new Ice());
-  src->learnMateria(new Cure());
-  ICharacter* me = new Character("me");
-  AMateria* tmp;
-  tmp = src->createMateria("ice");
-  me->equip(tmp);
-  tmp = src->createMateria("cure");
-  me->equip(tmp);
-  ICharacter* bob = new Character("bob");
-  me->use(0, *bob);
-  me->use(1, *bob);
-  delete bob;
-  delete me;
-  delete src;
-  return 0;
-}
-// */
-/*
-int main()
-{
-    // Create characters
+#include "includes/Character.hpp"
+
+// ---- AI test
+//*
+int main() { // Create characters
     Character alice("Alice");
     Character bob("Bob");
 
@@ -53,19 +33,28 @@ int main()
     return 0;
 }
 // */
+
+// -------- My tests
+/*
 int main()
 {
   IMateriaSource* src = new MateriaSource();
+  std::cout  << "1 ---" << std::endl;
   src->learnMateria(new Ice());
+  std::cout  << "2 ---" << std::endl;
   src->learnMateria(new Cure());
+  std::cout  << "3 ---" << std::endl;
+  delete src;
+  return (0);
 
   ICharacter* me = new Character("me");
 
   AMateria* tmp;
-  tmp = src->createMateria("ice");
-  me->equip(tmp);
-  tmp = src->createMateria("cure");
-  me->equip(tmp);
+  for (int i = 0; i < CSLOTS + 2 ; i++)
+  {
+    tmp = src->createMateria("ice");
+    me->equip(tmp);
+  }
 
 
   me->unequip(0);
@@ -77,5 +66,29 @@ int main()
   delete bob;
   delete me;
   delete src;
+  clearFloor();
   return 0;
 }
+// */
+// ---- Subject test
+/*
+int main()
+{
+  IMateriaSource* src = new MateriaSource();
+  src->learnMateria(new Ice());
+  src->learnMateria(new Cure());
+  ICharacter* me = new Character("me");
+  AMateria* tmp;
+  tmp = src->createMateria("ice");
+  me->equip(tmp);
+  tmp = src->createMateria("cure");
+  me->equip(tmp);
+  ICharacter* bob = new Character("bob");
+  me->use(0, *bob);
+  me->use(1, *bob);
+  delete bob;
+  delete me;
+  delete src;
+  return 0;
+}
+// */

@@ -2,6 +2,8 @@
 #include "../includes/Character.hpp"
 #include "../includes/Floor.hpp"
 #include "../includes/Colors.hpp"
+#include "../includes/Debug.hpp"
+#include "Debug.hpp"
 
 static Floor* floor;
 // constructors
@@ -39,36 +41,49 @@ Character& Character::operator=(Character const &copy)
 }
 
 // destructor
-Character::~Character(){};
+Character::~Character()
+{
+    for (int i = 0; i < CSLOTS; i++)
+      if (_isSlotUsed[i])
+        delete _inventory[i];
+};
 
 
 std::string const & Character::getName() const
 {
   return (this->_name);
 }
+
 void Character::equip(AMateria* m)
 {
+  if (!m)
+  {
+      DEBUG_WARN(this->_name << " equip: null materia");
+      return;
+  }
   for (int i = 0; i < CSLOTS; i++)
   {
     if (!_isSlotUsed[i])
     {
       _inventory[i] = m;
       _isSlotUsed[i] = true;
+      DEBUG_INFO(this->_name << " equipped materia type=" << m->getType());
       return;
     }
   }
+  DEBUG_WARN(this->_name << " equip failed: inventory full");
 }
 
 void Character::unequip(int idx)
 {
   if (idx < 0 || idx >= CSLOTS)
   {
-    std::cerr << ERROR_MSG << this->_name << " unequip: invalid index" << std::endl;
+    DEBUG_ERROR(this->_name << " unequip: invalid index");
     return;
   }
   if (!_isSlotUsed[idx])
   {
-    std::cerr << WARNING_MSG << this->_name << " unequip: slot is empty" << std::endl;
+    DEBUG_WARN(this->_name << " unequip: slot already empty");
     return ;
   }
 
@@ -78,21 +93,23 @@ void Character::unequip(int idx)
   floor = tmp;
   _inventory[idx] = NULL;
   _isSlotUsed[idx] = false;
+  DEBUG_INFO(this->_name << " unequipped slot " << idx);
 }
 
 void Character::use(int idx, ICharacter& target)
 {
   if (idx < 0 || idx >= CSLOTS)
   {
-    std::cerr << ERROR_MSG << this->_name << " use: invalid index" << std::endl;
+    DEBUG_ERROR(" use: invalid index");
     return;
   }
   if (!_isSlotUsed[idx])
   {
-    std::cerr << WARNING_MSG << this->_name << " use: slot is empty" << std::endl;
+    DEBUG_WARN(this->_name << " use: empty slot");
     return ;
   }
   _inventory[idx]->use(target);
+  DEBUG_INFO(this->_name << " uses materia on " << target.getName());
 }
 
 // floor

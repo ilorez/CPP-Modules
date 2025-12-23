@@ -1,5 +1,6 @@
 
 #include "../includes/Container.hpp"
+#include "../includes/Debug.hpp"
 
 // constructors
 MateriaSource::MateriaSource(){
@@ -26,7 +27,12 @@ MateriaSource& MateriaSource::operator=(MateriaSource const &copy)
   return (*this);
 }
 // destructor
-MateriaSource::~MateriaSource(){};
+MateriaSource::~MateriaSource()
+{
+  for (int i=0; i < MSLOTS; i++)
+    if (_knowledge_book[i])
+      delete _knowledge_book[i];
+};
 
 
 // member functions
@@ -34,19 +40,22 @@ void MateriaSource::learnMateria(AMateria* m)
 {
   if (!m)
   {
-    std::cerr << ERROR_MSG << "learnMateria: matria is invalid" << std::endl;
+    DEBUG_ERROR("MateriaSource::learnMateria null pointer");
     return;
   }
   for (int i=0; i < MSLOTS; i++)
   {
     if (!_knowledge_book[i])
     {
-      _knowledge_book[i] = m->clone();
-      std::cout << INFO_MSG << "learnMateria: new matria of type " << m->getType() << " has been learned" << std::endl;
+      _knowledge_book[i] = m->clone(); 
+      // MateriaSource owns the clone
+      // caller still owns the original
+      // if caller leaks means caller’s fault
+      DEBUG_INFO("MateriaSource learned materia type=" << m->getType());
       return ;
     }
   }
-  std::cerr << WARNING_MSG << "learnMateria: materia couldn't learned because no slots left" << std::endl;
+    DEBUG_WARN("MateriaSource storage full, cannot learn " << m->getType());
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)
@@ -54,9 +63,12 @@ AMateria* MateriaSource::createMateria(std::string const & type)
   for (int i=0; i < MSLOTS; i++)
   {
     if (_knowledge_book[i] && _knowledge_book[i]->getType() == type)
+    {
+      DEBUG_INFO("MateriaSource created materia type=" << type);
       return (_knowledge_book[i]->clone());
+    }
   }
-  std::cerr << WARNING_MSG << "createMateria: materia type is unknown" << std::endl;
+  DEBUG_WARN("MateriaSource unknown materia type=" << type);
   return (0);
 }
 

@@ -6,7 +6,7 @@ vpath %.cpp srcs
 NAME = polymorphism
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes # -DDEBUG
 RM = rm -rf
 BUILD_DR = ./build/
 
