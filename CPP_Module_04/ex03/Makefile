@@ -6,13 +6,13 @@ vpath %.cpp srcs
 NAME = polymorphism
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes # -DDEBUG
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes  #-DDEBUG
 RM = rm -rf
 BUILD_DR = ./build/
 
-HEADERS = Character.hpp Cure.hpp ICharacter.hpp Colors.hpp \
-					Floor.hpp IMateriaSource.hpp AMateria.hpp Container.hpp \
-					Ice.hpp MateriaSource.hpp 
+HEADERS = AMateria.hpp Character.hpp Colors.hpp Container.hpp\
+					Cure.hpp Debug.hpp Floor.hpp Ice.hpp ICharacter.hpp\
+					IMateriaSource.hpp MateriaSource.hpp
 F_SRCS = AMateria.cpp Cure.cpp IMeteriaSource.cpp Character.cpp \
 				 Ice.cpp MeteriaSource.cpp
 

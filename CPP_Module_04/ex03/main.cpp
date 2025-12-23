@@ -1,8 +1,7 @@
 #include "./includes/Container.hpp"
-#include "includes/Character.hpp"
 
 // ---- AI test
-//*
+/*
 int main() { // Create characters
     Character alice("Alice");
     Character bob("Bob");
@@ -70,6 +69,7 @@ int main()
   return 0;
 }
 // */
+
 // ---- Subject test
 /*
 int main()
@@ -77,6 +77,31 @@ int main()
   IMateriaSource* src = new MateriaSource();
   src->learnMateria(new Ice());
   src->learnMateria(new Cure());
+  ICharacter* me = new Character("me");
+  AMateria* tmp;
+  tmp = src->createMateria("ice");
+  me->equip(tmp);
+  tmp = src->createMateria("cure");
+  me->equip(tmp);
+  ICharacter* bob = new Character("bob");
+  me->use(0, *bob);
+  me->use(1, *bob);
+  delete bob;
+  delete me;
+  delete src;
+  return 0;
+}
+// */
+
+// ---- Fixed Subject test
+//*
+int main()
+{
+  IMateriaSource* src = new MateriaSource();
+  Ice ice;
+  Cure cure;
+  src->learnMateria(&ice);
+  src->learnMateria(&cure);
   ICharacter* me = new Character("me");
   AMateria* tmp;
   tmp = src->createMateria("ice");
