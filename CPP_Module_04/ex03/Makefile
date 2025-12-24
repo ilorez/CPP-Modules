@@ -3,7 +3,7 @@
 vpath %.hpp includes
 vpath %.cpp srcs
 
-NAME = polymorphism
+NAME = minecraft_inventory 
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes  #-DDEBUG

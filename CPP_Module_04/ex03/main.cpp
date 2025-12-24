@@ -34,33 +34,37 @@ int main() { // Create characters
 // */
 
 // -------- My tests
-/*
+//*
 int main()
 {
   IMateriaSource* src = new MateriaSource();
   std::cout  << "1 ---" << std::endl;
-  src->learnMateria(new Ice());
+  Ice ice;
+  Cure cure;
+  src->learnMateria(&ice);
   std::cout  << "2 ---" << std::endl;
-  src->learnMateria(new Cure());
+  src->learnMateria(&cure);
   std::cout  << "3 ---" << std::endl;
-  delete src;
-  return (0);
 
-  ICharacter* me = new Character("me");
+  ICharacter* me = new Character("MyCharacter");
 
   AMateria* tmp;
-  for (int i = 0; i < CSLOTS + 2 ; i++)
+  for (int i = 0; i < CSLOTS + 1 ; i++)
   {
-    tmp = src->createMateria("ice");
+    if (i%2)
+      tmp = src->createMateria("ice");
+    else
+      tmp = src->createMateria("cure");
     me->equip(tmp);
   }
-
-
+  // because the last tmp will found slots used
+  delete tmp;
   me->unequip(0);
-
+  me->unequip(1);
+  me->unequip(2);
   ICharacter* bob = new Character("bob");
-  me->use(0, *bob);
   me->use(1, *bob);
+  me->use(3, *bob);
 
   delete bob;
   delete me;
@@ -94,7 +98,7 @@ int main()
 // */
 
 // ---- Fixed Subject test
-//*
+/*
 int main()
 {
   IMateriaSource* src = new MateriaSource();

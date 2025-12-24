@@ -120,4 +120,5 @@ void clearFloor() {
         delete tmp->value;
         delete tmp;
     }
+    DEBUG_INFO( " Floor has been cleaned");
 }
