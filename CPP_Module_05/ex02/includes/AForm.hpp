@@ -56,6 +56,9 @@ class AForm
     // memeber functions
     void beSigned(const Bureaucrat& obj);
     virtual void execute(Bureaucrat const & executor) const = 0;
+  protected:
+    virtual void executeAction() const = 0;
+
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& obj);

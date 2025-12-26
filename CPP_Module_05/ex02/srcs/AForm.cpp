@@ -5,15 +5,15 @@
 AForm::AForm():
   _name("unkown"), 
   _is_signed(false),
-  _req_grd_2signe(150),
-  _req_grd_2exec(150)
+  _req_grd_2signe(10),
+  _req_grd_2exec(10)
 {}
 
 AForm::AForm(std::string name):
   _name(name),
   _is_signed(false),
-  _req_grd_2signe(150),
-  _req_grd_2exec(150)
+  _req_grd_2signe(10),
+  _req_grd_2exec(10)
 {}
 AForm::AForm(std::string name, bool s, int req_sgn, int req_exec):
   _name(name),
@@ -110,7 +110,7 @@ std::ostream& operator<<(std::ostream & os, const AForm & obj)
   std::string issigned = "not signed";
   if (obj.isSigned())
     issigned = "signed";
-  os << obj.getName() << ", AForm is "<< issigned << ".";
+  os << obj.getName() << ", Form is "<< issigned << ".";
   os << "(required grade to sign: " <<  obj.getRequiredGrade2Signe() << ",";
   os << "required grade to execute: " <<  obj.getRequiredGrade2Exec() << ")" ;
   return (os);
@@ -125,3 +125,11 @@ void AForm::_gradeCheck(int g) const
     throw AForm::GradeTooHighException();
 }
 
+void AForm::execute(const Bureaucrat& obj) const 
+{
+  if (!isSigned())
+    throw AForm::AFormNotSignedException();
+  if (obj.getGrade() > this->getRequiredGrade2Exec())
+    throw AForm::GradeTooLowException();
+  executeAction();
+}

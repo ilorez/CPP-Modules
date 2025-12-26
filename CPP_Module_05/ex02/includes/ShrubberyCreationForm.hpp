@@ -6,9 +6,12 @@
 
 class ShrubberyCreationForm: public AForm
 {
+
   private:
     std::string _target;
+
   public:
+
     // OCF
     ShrubberyCreationForm();
     ~ShrubberyCreationForm();
@@ -26,5 +29,9 @@ class ShrubberyCreationForm: public AForm
     };
 
     void execute(Bureaucrat const & executor) const;
+
+  protected:
+    void executeAction() const;
+
 };
 #endif // !

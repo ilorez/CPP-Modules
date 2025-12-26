@@ -10,9 +10,13 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes  #-DDEBUG
 RM = rm -rf
 BUILD_DR = ./build/
 
-HEADERS = Bureaucrat.hpp Container.hpp AForm.hpp ShrubberyCreationForm.hpp
+HEADERS = Bureaucrat.hpp Container.hpp AForm.hpp \
+					ShrubberyCreationForm.hpp \
+					RobotomyRequestForm.hpp \
+					PresidentialPardonForm.hpp
 
-F_SRCS = Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp
+
+F_SRCS = Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 
 SRCS = main.cpp $(F_SRCS) 
 
