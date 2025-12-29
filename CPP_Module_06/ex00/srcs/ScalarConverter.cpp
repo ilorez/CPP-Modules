@@ -6,13 +6,17 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 11:34:50 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/12/29 12:53:45 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/12/29 13:51:51 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ScalarConverter.hpp"
 #include "../includes/helpers.h"
 
+ScalarConverter::ScalarConverter() {}
+ScalarConverter::~ScalarConverter() {}
+ScalarConverter::ScalarConverter(const ScalarConverter &) {}
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &) { return *this; }
 
 void ScalarConverter::convert(const std::string &str)
 {

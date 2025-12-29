@@ -1,19 +1,18 @@
 
 # vpaths
 vpath %.hpp includes
-vpath %.h includes
 vpath %.cpp srcs
 
-NAME = convert 
+NAME = serialization 
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes  -DDEBUG
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes  #-DDEBUG
 RM = rm -rf
 BUILD_DR = ./build/
 
-HEADERS = Container.hpp ScalarConverter.hpp helpers.h
+HEADERS = Data.hpp Serializer.hpp
 
-F_SRCS = ScalarConverter.cpp helpers.cpp
+F_SRCS = Data.cpp Serializer.cpp 
 
 SRCS = main.cpp $(F_SRCS) 
 
