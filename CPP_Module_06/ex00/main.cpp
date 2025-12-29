@@ -6,11 +6,11 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 17:09:42 by znajdaou          #+#    #+#             */
-/*   Updated: 2025/12/28 18:33:33 by znajdaou         ###   ########.fr       */
+/*   Updated: 2025/12/29 12:39:39 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/Container.hpp"
+#include "./includes/ScalarConverter.hpp"
 //*
 int main(int argc, char **argv)
 {
@@ -22,16 +22,7 @@ int main(int argc, char **argv)
 
     std::string literal = argv[1];
 
-    try
-    {
-        ScalarConverter::convert(literal);
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << "Error: " << e.what() << std::endl;
-        return 1;
-    }
-
+    ScalarConverter::convert(literal);
     return 0;
 }
 // */

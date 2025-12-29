@@ -1,18 +1,19 @@
 
 # vpaths
 vpath %.hpp includes
+vpath %.h includes
 vpath %.cpp srcs
 
-NAME = intern
+NAME = cast 
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes  #-DDEBUG
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes  -DDEBUG
 RM = rm -rf
 BUILD_DR = ./build/
 
-HEADERS = Container.hpp ScalarConverter.hpp 
+HEADERS = Container.hpp ScalarConverter.hpp helpers.h
 
-F_SRCS = ScalarConverter.cpp
+F_SRCS = ScalarConverter.cpp helpers.cpp
 
 SRCS = main.cpp $(F_SRCS) 
 

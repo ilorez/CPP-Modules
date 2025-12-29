@@ -3,7 +3,16 @@
 
 #include "iostream"
 #include <ostream>
-#include "./ScalarConverter.hpp"
+#include <cctype>
+#include <climits>
+#include <cstdlib>
+#include <iomanip>
+#include <limits>
+#include <sstream>
+#include "./Colors.hpp"
+#include "./Debug.hpp"
+
+
 
 
 

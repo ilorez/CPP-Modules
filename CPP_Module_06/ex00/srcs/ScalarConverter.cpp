@@ -1,126 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScalarConverter.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/29 11:34:50 by znajdaou          #+#    #+#             */
+/*   Updated: 2025/12/29 12:53:45 by znajdaou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ScalarConverter.hpp"
-#include <cctype>
-#include <cstdlib>
-#include <iomanip>
-#include <limits>
-
-enum t_type {
-  TCHAR,
-  TINT,
-  TFLOAT,
-  TDOUBLE,
-  UNKONW
-};
-
-bool isValid(const std::string &s)
-{
-  if (s.empty())
-         return (false);
-  for (size_t i = 0; i < s.length(); i++)
-  {
-    if (s[i] < 32 || s[i] > 126)
-      return (false);
-  }
-  return (true);
-}
-
-bool isChar(const std::string &s)
-{
-  if (s.length() == 1 && (s[0] < 48 || s[0] > 57))
-    return (true);
-  return (false);
-}
-
-bool isInt(const std::string &s)
-{
-  size_t i = 0;
-  if (s[i] == '-' || s[i] == '+')
-    i++;
-  if (i == s.length())
-    return false;
-  for (; i < s.length(); i++)
-  {
-    if (!std::isdigit(s[i]))
-      return false;
-  }
-  return (true);
-}
-
-bool isFloat(const std::string &s)
-{
-  (void)s;
-  return (false);
-}
-
-bool isDouble(const std::string &s)
-{
-  (void)s;
-  return (false);
-}
-
-t_type getType(const std::string &s)
-{
-  if (!s.compare("-inff") || !s.compare("+inff") || !s.compare("nanf"))
-    return (TFLOAT);
-  if (!s.compare("-inf") || !s.compare("+inf") || !s.compare("nan"))
-    return (TDOUBLE);
-  if (isChar(s))
-    return (TCHAR);
-  if (isInt(s))
-    return (TINT);
-  if (isFloat(s))
-    return (TFLOAT);
-  if (isDouble(s))
-    return (TDOUBLE);
-  return (UNKONW);
-}
-
-void printChar(char c)
-{
-  if (c < 32 || c > 126)
-    std::cout << "char: Non displayable" << std::endl;
-  else
-    std::cout << "char: '"<< c << "'" << std::endl;
-
-}
-void printIt(char c, int i, float &f, double &d)
-{
-  printChar(c);
-  std::cout << "int: "<< i << std::endl;
-  std::cout << std::fixed << std::setprecision(1);
-  std::cout << "float: "<< f << "f" << std::endl;
-  std::cout << "double: "<< d << std::endl;
-}
-
-
-void printInt(const std::string &s)
-{
-  long long value = std::atoll(s.c_str());
-  int i =  static_cast<int>(value);
-  if (value > std::numeric_limits<int>::max() ||
-      value < std::numeric_limits<int>::min()
-  )
-  {
-    std::cout << "char: impossible" << std::endl;
-    std::cout << "int: impossible" << std::endl;
-  }
-  else if (value > std::numeric_limits<char>::max() ||
-      value < std::numeric_limits<char>::min()
-  )
-  {
-    std::cout << "char: impossible" << std::endl;
-    std::cout << "int: " << static_cast<int>(value) << std::endl;
-  }
-  else {
-    printChar(static_cast<char>(i));
-    std::cout << "int: " << static_cast<int>(value) << std::endl;
-  }
-  std::cout << std::fixed << std::setprecision(1);
-  float f = static_cast<float>(i);
-  double d = static_cast<double>(i);
-  std::cout << "float: "<< f << "f" << std::endl;
-  std::cout << "double: "<< d << std::endl;
-}
+#include "../includes/helpers.h"
 
 
 void ScalarConverter::convert(const std::string &str)
@@ -133,11 +24,13 @@ void ScalarConverter::convert(const std::string &str)
     std::cerr << "invalid Input" << std::endl;
     return;
   }
-
-  char c;
-  int i;
-  float f;
-  double d;
+  // used for foce decimal format and set number of digits after "."
+  std::cout << std::fixed << std::setprecision(1);
+  bool found = false;
+  char c = 0;
+  int i = 0;
+  float f = 0;
+  double d = 0;
   // get the type of the input
   // use switch to print types
     // first convert it from string to its type using cpp explicity conversion 
@@ -149,22 +42,82 @@ void ScalarConverter::convert(const std::string &str)
   //  i need some checks for int type to print impossible in case of overflow
   switch (getType(str))
   {
+    case TPSEUDOF:
+      printImpossible(2);
+      std::cout << "float: " << str << std::endl;
+      std::cout << "double: " << str.substr(0, str.length() - 1) << std::endl;
+      break;
+    case TPSEUDOD:
+      printImpossible(2);
+      std::cout << "float: " << str << "f" << std::endl;
+      std::cout << "double: " << str << std::endl;
+      break;
     case TCHAR:
+      DEBUG_INFO("Type: char");
       c = str[0];
       i = static_cast<int>(c);
       f = static_cast<float>(c);
       d = static_cast<double>(c);
-      printIt(c, i, f,d);
-      break;
+      found = true;
+      printChar(i);
     case TINT:
-      printInt(str);
-      break;
+      if (!found)
+      {
+        DEBUG_INFO("Type: int");
+        found = getInt(str, i);
+        if (!found)
+          return (printImpossible(4));
+        f = static_cast<float>(i);
+        d = static_cast<double>(i);
+        printChar(i);
+      }
+      std::cout << "int: "<< i << std::endl;
     case TFLOAT:
-      break;
+      if (!found)
+      {
+        DEBUG_INFO("Type: float");
+        found = getFloat(str, f);
+        if (!found)
+          return (printImpossible(4));
+        if (f > (float)INT_MAX || f < (float)INT_MIN)
+          printImpossible(2);
+        else
+        {
+          i = static_cast<int>(f);
+          printChar(i);
+          std::cout << "int: "<< i << std::endl;
+        }
+        d = static_cast<double>(f);
+      }
+      std::cout << "float: "<< f << "f" << std::endl;
     case TDOUBLE:
+      if (!found)
+      {
+        DEBUG_INFO("Type: double");
+        found = getDouble(str, d);
+        if (!found)
+          return (printImpossible(4));
+        f = static_cast<float>(d);
+        if (d > std::numeric_limits<float>::max() ||
+            d < -std::numeric_limits<float>::max())
+          printImpossible(3);
+        else if (f > (float)INT_MAX || f < (float)INT_MIN)
+        {
+          printImpossible(2);
+          std::cout << "float: "<< f << "f" << std::endl;
+        }
+        else
+        {
+          i = static_cast<int>(f);
+          printChar(i);
+          std::cout << "int: "<< i << std::endl;
+          std::cout << "float: "<< f << "f" << std::endl;
+        }
+      }
+      std::cout << "double: "<< d << std::endl;
       break;
     default:
+      DEBUG_ERROR("Error");
       std::cerr << "Invalid input" << std::endl;
   }
 }
-
