@@ -1,6 +1,7 @@
 
 # vpaths
 vpath %.hpp includes
+vpath %.h includes
 vpath %.cpp srcs
 
 NAME =  identify_real_type
@@ -10,9 +11,9 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes  #-DDEBUG
 RM = rm -rf
 BUILD_DR = ./build/
 
-HEADERS = Data.hpp Serializer.hpp
+HEADERS = Base.hpp A.hpp B.hpp C.hpp container.h
 
-F_SRCS = Data.cpp Serializer.cpp 
+F_SRCS = utils.cpp Base.cpp 
 
 SRCS = main.cpp $(F_SRCS) 
 
