@@ -1,0 +1,18 @@
+[
+ {
+  "directory": "/home/znajdaou/Desktop/github/cpps/notes/template_ex",
+  "arguments": [
+   "c++",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-std=c++98",
+   "-I./includes",
+   "-c",
+   "main.cpp",
+   "-o",
+   "build/main.o"
+  ],
+  "file": "main.cpp"
+ }
+]
