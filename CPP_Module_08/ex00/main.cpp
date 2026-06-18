@@ -1,5 +1,6 @@
 #include "./includes/easyfind.hpp"
 #include <vector>
+#include <iostream>
 
 
 int main()
@@ -9,6 +10,8 @@ int main()
   v.push_back(2);
   v.push_back(3);
 
-  easyfind(v, 2);
-
+  if (easyfind(v, 2))
+    std::cout << "found" << std::endl;
+  else
+    std::cout << "not found" << std::endl;
 }
