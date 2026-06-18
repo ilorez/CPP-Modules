@@ -6,11 +6,11 @@
 
 class Span {
   private:
-    int _N;
+    unsigned long _N;
     std::vector<int> _arr;
   public:
     // orthx
-    Span(int N);
+    Span(unsigned long N);
     Span();
     ~Span();
     Span(const Span& copy);
@@ -30,7 +30,7 @@ class Span {
         const char* what() const throw();
     };
 
-    void fillRange(std::iterator);
+    void fillRange(std::vector<int>::iterator start, std::vector<int>::iterator end);
 };
 
 #endif

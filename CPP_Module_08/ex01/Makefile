@@ -4,7 +4,7 @@ vpath %.hpp includes
 NAME = span 
 
 HEADERS = Span.hpp
-SRCS = main.cpp
+SRCS = Span.cpp main.cpp
 OBJS = $(SRCS:%.cpp=%.o)
 CXXFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -rf

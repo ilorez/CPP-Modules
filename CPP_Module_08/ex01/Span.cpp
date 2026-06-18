@@ -3,7 +3,7 @@
 #include <iterator>
 
 Span::Span():_N(0){};
-Span::Span(int n):_N(n){};
+Span::Span(unsigned long n):_N(n){};
 Span::Span(const Span& copy){
   *this = copy;
 };
@@ -14,7 +14,7 @@ Span& Span::operator=(const Span& copy) {
   if (this != &copy)
   {
     this->_N = copy._N;
-    for (int i = 0; i < _N; i++)
+    for (unsigned long i = 0; i < _N; i++)
       _arr[i] = copy._arr[i];
   }
   return *this;
@@ -33,9 +33,10 @@ int Span::shortestSpan()
   if (_arr.size() < 2)
    throw EmptyExeption();
   std::sort(_arr.begin(), _arr.end());
-  int short_span = 0;
+  int short_span;
   int tmp;
-  for (int i = 0; i < _N - 1; i++)
+  short_span = std::abs(_arr[1] - _arr[0]);
+  for (unsigned long i = 1; i < _N - 1; i++)
   {
     tmp = _arr[i+1] - _arr[i];
     tmp = std::abs(tmp);
@@ -62,6 +63,18 @@ const char* Span::EmptyExeption::what()  const throw() {
 
 const char* Span::FullExeption::what()  const throw() {
 
-  return "Span fulled";
+  return "Span filled";
+}
+
+
+
+void Span::fillRange(std::vector<int>::iterator start, std::vector<int>::iterator end)
+{
+  std::vector<int>::iterator it = _arr.begin();
+  while (start != end)
+  {
+    *it = *start;
+    it++; start++;
+  }
 }
 
