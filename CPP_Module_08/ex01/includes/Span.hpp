@@ -30,7 +30,7 @@ class Span {
         const char* what() const throw();
     };
 
-    void fillArr();
+    void fillRange(std::iterator);
 };
 
 #endif
