@@ -29,6 +29,11 @@ class Span {
       public:
         const char* what() const throw();
     };
+    class RangeTooLargeExeption: public std::exception {
+      public:
+        const char* what() const throw();
+    };
+
 
     void fillRange(std::vector<int>::iterator start, std::vector<int>::iterator end);
 };
