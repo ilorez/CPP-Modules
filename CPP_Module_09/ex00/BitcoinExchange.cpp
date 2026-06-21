@@ -6,7 +6,7 @@
 /*   By: znajdaou <znajdaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/21 16:03:32 by znajdaou          #+#    #+#             */
-/*   Updated: 2026/06/21 16:57:07 by znajdaou         ###   ########.fr       */
+/*   Updated: 2026/06/21 18:22:19 by znajdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ BitcoinExchange::~BitcoinExchange(){}
 bool BitcoinExchange::isValidDate(const std::string &date) const {
   // date = 2026-02-12
   if (date.size() != 10 || date[4] != '-' || date[7] != '-')
-    throw InvalidDateException();
+    throw InvalidDateException(date);
   std::istringstream year(date.substr(0,4));
   std::istringstream month(date.substr(5, 2));
   std::istringstream day(date.substr(8,2));
@@ -70,7 +70,7 @@ double BitcoinExchange::getEchangeRate(const std::string &date) const{
   if (it != _db.end() && it->first == date)
     return it->second;
   else if (it == _db.begin())
-    throw InvalidDateException();
+    throw InvalidDateException(date+" because it too old");
   --it;
   return it->second;
 }
@@ -93,7 +93,7 @@ void BitcoinExchange::readInput(const char *path)
         throw BadInputException(line);
       pair = getPair(line, 3);
       if (!isValidDate(pair.first))
-        throw InvalidDateException();
+        throw InvalidDateException(pair.first);
       if (pair.second < 0)
         throw NotPositiveNumberException();
       if (pair.second > 1000)
@@ -117,7 +117,7 @@ BitcoinExchange::t_pair BitcoinExchange::getPair(std::string line, int del_size)
   std::string date = line.substr(0, 10);
   std::istringstream iss(line.substr(10 + del_size));
   double value;
-  if (!(iss >> value))
+  if (!(iss >> value) || !iss.eof())
     throw BadInputException(line);
   return std::make_pair(date, value);
 }
@@ -138,7 +138,8 @@ void BitcoinExchange::readDb()
 
 // exceptions
 const char* BitcoinExchange::InvalidDateException::what() const throw(){
-  return "invalid date input.";
+  _msg = "invalid date: " + _txt;
+  return (_msg.c_str());
 }
 
 const char* BitcoinExchange::CantReadDBException::what() const throw(){
@@ -168,5 +169,10 @@ const char* BitcoinExchange::BadInputException::what() const throw(){
 
 BitcoinExchange::BadInputException::~BadInputException() throw() {}
 BitcoinExchange::BadInputException::BadInputException(const std::string &txt) :_txt(txt){}
+
+
+BitcoinExchange::InvalidDateException::~InvalidDateException() throw() {}
+BitcoinExchange::InvalidDateException::InvalidDateException(const std::string &txt) :_txt(txt){}
+
 
 
