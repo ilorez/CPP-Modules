@@ -1,18 +1,17 @@
 
 # vpaths
 vpath %.hpp includes
-vpath %.cpp srcs
 
 NAME = btc 
 
 CXX = c++
-CXXFLAGS = -std=c++98 -I./includes  #-DDEBUG -Wall -Wextra -Werror 
+CXXFLAGS = -std=c++98 -I./includes  -Wall -Wextra -Werror #-DDEBUG  
 RM = rm -rf
 BUILD_DR = ./build/
 
-HEADERS = Array.hpp
+HEADERS = BitcoinExchange.hpp
 
-F_SRCS = 
+F_SRCS = BitcoinExchange.cpp 
 
 SRCS = main.cpp $(F_SRCS) 
 

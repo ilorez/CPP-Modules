@@ -2,23 +2,15 @@
 #define BITCOINEXCHANGE_HPP
 
 #include <map>
-#include <sstream>
 #include <string>
-typedef typename std::pair<std::string, double> t_pair;
 #define DB_FILE_PATH "./data.csv" // the data.csv file should always be valid
-
-template <typename T, typename R>
-bool to_integer(T value, R &re)
-{
-    std::istringstream iss(value);
-    return (iss >> re);
-}
 
 class BitcoinExchange {
   private:
     std::map<std::string, double> _db;
     std::string _input_file;
   public:
+    typedef std::pair<std::string, double> t_pair;
     // orthx
     BitcoinExchange();
     BitcoinExchange(const BitcoinExchange& copy);
@@ -31,6 +23,8 @@ class BitcoinExchange {
     t_pair readLine(); 
     // ("2011-01-03 | 3.111", 3) ==> {first: "2011-01-03", second: 3.111}
     t_pair getPair(std::string line, int del_size);
+    bool isValidDate(const std::string &date) const;
+    double getEchangeRate(const std::string &date) const;
 
     // exceptions
     class InvalidDateException: public std::exception {
@@ -68,7 +62,8 @@ class BitcoinExchange {
         std::string _txt;
         mutable std::string _msg; 
       public:
-        BadInputException(std::string text);
+        BadInputException(const std::string &text);
+        ~BadInputException() throw();
         const char* what() const throw();
     };
 
