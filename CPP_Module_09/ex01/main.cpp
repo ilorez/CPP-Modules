@@ -7,7 +7,7 @@ int main(int argc, char **argv)
 {
   if (argc != 2)
   {
-    std::cout << "Error: require exp as argument" << std::endl;
+    std::cerr << "Error: require exp as argument" << std::endl;
     return (EXIT_FAILURE);
   }
   try {
