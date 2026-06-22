@@ -17,7 +17,7 @@ class RPN {
         std::string _msg;
       public:
         RPNException(std::string msg);
-        ~RPNException();
+        ~RPNException() throw();
         const char * what() const throw();
     };
 };

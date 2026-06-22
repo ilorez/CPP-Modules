@@ -13,8 +13,7 @@ RPN& RPN::operator=(const RPN& copy){
 }
 
 // this method ignore spaces
-// so this valid "11+" => 2
-// also this valid "1      1      +" => 2
+// this valid "1      1      +" => 2
 int RPN::calcule(const char* exp) {
 
   int re;
@@ -26,6 +25,8 @@ int RPN::calcule(const char* exp) {
     if (exp[i] > 47 && exp[i] < 58)
     {
       _container.push(exp[i] - 48);
+      if (!std::isspace(exp[i+1]))
+        throw RPNException("accept one digit as number (0-9)");
       continue;
     }
     if (_container.size() < 2)
@@ -36,6 +37,8 @@ int RPN::calcule(const char* exp) {
     _container.pop();
     switch (exp[i]) {
       case '/':
+        if (a == 0)
+          throw RPNException("math error can't devide by 0");
         re = b / a;
         break;
       case '*':
@@ -52,6 +55,8 @@ int RPN::calcule(const char* exp) {
     }
     _container.push(re);
   }
+  if (_container.size() == 0)
+    throw RPNException("empty exp");
   if (_container.size() != 1)
     throw RPNException("stack have more then one number at end of calculation");
   re = _container.top();
@@ -61,5 +66,5 @@ int RPN::calcule(const char* exp) {
 
 // exception
 RPN::RPNException::RPNException(std::string msg): _msg(msg){}
-RPN::RPNException::~RPNException(){}
+RPN::RPNException::~RPNException() throw(){}
 const char* RPN::RPNException::what() const throw() {return _msg.c_str();}
