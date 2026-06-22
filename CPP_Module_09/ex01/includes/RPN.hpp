@@ -2,6 +2,7 @@
 #define BITCOINEXCHANGE_HPP
 
 #include <stack>
+#include <string>
 class RPN {
   private:
     std::stack<int> _container;
@@ -10,7 +11,14 @@ class RPN {
     ~RPN();
     RPN(const RPN& copy);
     RPN& operator=(const RPN& copy);
-
-    void calcule(const char*str);
+    int calcule(const char*str);
+    class RPNException: public std::exception {
+      private:
+        std::string _msg;
+      public:
+        RPNException(std::string msg);
+        ~RPNException();
+        const char * what() const throw();
+    };
 };
 #endif

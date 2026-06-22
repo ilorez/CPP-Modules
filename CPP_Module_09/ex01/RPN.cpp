@@ -1,42 +1,65 @@
 #include "./includes/RPN.hpp"
+#include <cctype>
+#include <iostream>
+#include <stdexcept>
 
 RPN::RPN(){}
 RPN::~RPN(){}
 RPN::RPN(const RPN& copy){*this=copy;}
-RPN& RPN::operator=(const RPN& copy){return *this;}
+RPN& RPN::operator=(const RPN& copy){
+  if (this == &copy)
+    return *this;
+  return *this;
+}
 
+// this method ignore spaces
+// so this valid "11+" => 2
+// also this valid "1      1      +" => 2
 int RPN::calcule(const char* exp) {
 
-  for (int i; exp[i]; i++)
+  int re;
+  for (int i = 0; exp[i]; i++)
   {
+    if (std::isspace(exp[i]))
+        continue;
+    //std::cout << "char: " << exp[i] << std::endl;
     if (exp[i] > 47 && exp[i] < 58)
+    {
       _container.push(exp[i] - 48);
+      continue;
+    }
     if (_container.size() < 2)
-      throw "error";
+      throw RPNException("invalid exp");
     int a = _container.top();
     _container.pop();
     int b = _container.top();
     _container.pop();
-    int re;
     switch (exp[i]) {
       case '/':
-        re = a/b;
+        re = b / a;
         break;
       case '*':
-        re = a*b;
+        re = b * a;
         break;
       case '+':
-        re = a+b;
+        re = b + a;
         break;
       case '-':
-        re = a-b;
+        re = b - a;
         break;
       default:
-        throw "operator not found"; break;
+        throw RPNException("operator not found"); break;
     }
     _container.push(re);
   }
   if (_container.size() != 1)
-    throw "error";
-
+    throw RPNException("stack have more then one number at end of calculation");
+  re = _container.top();
+  _container.pop();
+  return re;
 }
+
+// exception
+RPN::RPNException::RPNException(std::string msg): _msg(msg){}
+RPN::RPNException::~RPNException(){}
+const char* RPN::RPNException::what() const throw() {return _msg.c_str();}
