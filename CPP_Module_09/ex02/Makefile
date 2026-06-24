@@ -11,7 +11,7 @@ BUILD_DR = ./build/
 
 HEADERS = PmergeMe.hpp
 
-F_SRCS = PmergeMe.cpp 
+F_SRCS =  
 
 SRCS = main.cpp $(F_SRCS) 
 
