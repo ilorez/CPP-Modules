@@ -13,12 +13,15 @@
 #include "includes/PmergeMe.hpp"
 #include <algorithm>
 #include <sstream>
+#include <sys/select.h>
 #include <utility>
 #include <vector>
 #include <iostream>
 
 // orthx conanical form
-PmergeMe::PmergeMe(): _straggler(-1){}
+PmergeMe::PmergeMe(): _straggler(-1){
+	gettimeofday(&_start, NULL);
+}
 PmergeMe::~PmergeMe(){}
 PmergeMe::PmergeMe(const PmergeMe& copy){*this = copy;}
 PmergeMe& PmergeMe::operator=(const PmergeMe& copy) {
@@ -73,21 +76,7 @@ void PmergeMe::setupChains(){
       _main_chain.push_back(_pairs[i].first);
       _pend_chain.push_back(_pairs[i].second);
   }
-  // TODO: is pushing straggler now make probleme
-  //if (_straggler != -1)
-   // _pend_chain.push_back(_straggler);
 }
-
-/*void PmergeMe::generateJacobsthalSq(){
-  _jacobsthal_sq.push_back(3);
-  _jacobsthal_sq.push_back(5);
-  for (size_t i = 2; i < _input.size(); i++)
-  {
-    // current = previous + 2 × (previous of the previous)
-    int current = _jacobsthal_sq[i-1] + 2 * _jacobsthal_sq[i-2];
-    _jacobsthal_sq.push_back(current);
-  }
-}*/
 
 // Important Note:
 // the Jacobsthal sequence give you the number of item no the index
@@ -148,6 +137,23 @@ void PmergeMe::insertPends() {
     insert_pos = std::lower_bound(_main_chain.begin(), _main_chain.end(), _straggler);
     _main_chain.insert(insert_pos, _straggler);
   }
+  // DONE
+  gettimeofday(&_end, NULL);
+}
+
+void PmergeMe::displayInfo(){
+	std::cout << "Before: ";
+    for (size_t i = 0; i < _input.size(); i++)
+        std::cout << _input[i] << " ";
+    std::cout << std::endl;
+
+	std::cout << "After: ";
+    for (size_t i = 0; i < _main_chain.size(); i++)
+        std::cout << _main_chain[i] << " ";
+    std::cout << std::endl;
+
+	double elapsed = (_end.tv_sec - _start.tv_sec) * 1e6 + (_end.tv_usec - _start.tv_usec);
+	std::cout << "Time to process a range of 3000 elements with std::vector : " << elapsed << " us";
 }
 
 // exception

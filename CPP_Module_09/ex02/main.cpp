@@ -18,10 +18,11 @@ int main(int argc, char **argv)
     re.sortPairs();
     re.setupChains();
     re.generateJacobsthalSq();
-    // use jacon sequence with binary search (lower_bound) to insert number
     re.insertPends();
+	re.displayInfo();
     
-    re.printAll();
+	// DEBUG
+    //re.printAll();
   } catch (std::exception &e) {
     std::cerr << "Error: " << e.what() << std::endl;
     return (EXIT_FAILURE);
