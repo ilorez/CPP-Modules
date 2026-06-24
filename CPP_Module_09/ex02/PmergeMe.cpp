@@ -117,11 +117,14 @@ void PmergeMe::generateJacobsthalSq(){
     // no need for index that will not be used
     if (current > _pend_chain.size())
       current = _pend_chain.size();
-    while ( std::find(_jacobsthal_sq.begin(), _jacobsthal_sq.end(), current) 
-            == _jacobsthal_sq.end())
+	// we stop when we found "current" inside jacob arr
+	// we can use find to do this
+	// but we know also that the first element we will found is the element we start counting down from it
+	// and that element is the js[-2] before last element which is already stored in js vector
+    while (current != static_cast<size_t>(*(js.end() -2) ))
     {
       _jacobsthal_sq.push_back(current--);
-      if (_jacobsthal_sq.size() == _pend_chain.size())
+      if (_jacobsthal_sq.size() == _pend_chain.size() - 1)
         return;
     }
   }
@@ -136,7 +139,7 @@ void PmergeMe::insertPends() {
   {
     bk = _pend_chain[_jacobsthal_sq[i] - 1];
     ak = _pairs[_jacobsthal_sq[i]-1].first;
-    ak_pos = std::find(_main_chain.begin(), _main_chain.end(), ak);
+    ak_pos = std::lower_bound(_main_chain.begin(), _main_chain.end(), ak);
     insert_pos = std::lower_bound(_main_chain.begin(), ak_pos + 1, bk);
     _main_chain.insert(insert_pos, bk);
   }
