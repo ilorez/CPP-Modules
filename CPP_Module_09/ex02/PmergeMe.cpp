@@ -68,26 +68,26 @@ std::deque<int> pendIsertOrderDeq(size_t size) {
 };
 
 
-void fJSortVec(std::vector<int> &vec) {
+void fJSortVec(std::vector<int> &container) {
   // base stop rec
-  if (vec.size() == 1) {
+  if (container.size() == 1) {
     return;
   }
 
   std::vector<std::pair<int, int> > pairs;
   int straggler = 0;
-  if (vec.size() % 2) {
-    straggler = vec.back();
-    vec.pop_back();
+  if (container.size() % 2) {
+    straggler = container.back();
+    container.pop_back();
   }
 
   // create pair list
-  for (size_t i = 0; i < vec.size(); i += 2) {
+  for (size_t i = 0; i < container.size(); i += 2) {
     // sort pair
-    if (vec[i] > vec[i + 1])
-      pairs.push_back(std::make_pair(vec[i], vec[i + 1]));
+    if (container[i] > container[i + 1])
+      pairs.push_back(std::make_pair(container[i], container[i + 1]));
     else
-      pairs.push_back(std::make_pair(vec[i + 1], vec[i]));
+      pairs.push_back(std::make_pair(container[i + 1], container[i]));
   }
 
   // create main chain
@@ -128,5 +128,76 @@ void fJSortVec(std::vector<int> &vec) {
   }
   if(straggler)
 	  binaryInsert(main_chain, main_chain.end(), straggler);
-  vec = main_chain;
+  container = main_chain;
 }
+
+void fJSortDeq(std::deque<int> &container) {
+  // base stop rec
+  if (container.size() == 1) {
+    return;
+  }
+
+  std::deque<std::pair<int, int> > pairs;
+  int straggler = 0;
+  if (container.size() % 2) {
+    straggler = container.back();
+    container.pop_back();
+  }
+
+  // create pair list
+  for (size_t i = 0; i < container.size(); i += 2) {
+    // sort pair
+    if (container[i] > container[i + 1])
+      pairs.push_back(std::make_pair(container[i], container[i + 1]));
+    else
+      pairs.push_back(std::make_pair(container[i + 1], container[i]));
+  }
+
+  // create main chain
+  std::deque<int> main_chain;
+  for (size_t i = 0; i < pairs.size(); i++) {
+	  main_chain.push_back(pairs[i].first);
+  }
+
+  // recursve run until size got 1
+  fJSortDeq(main_chain);
+
+  // create pend_chain
+  std::deque<int> pend_chain;
+  for (size_t j = 0; j < main_chain.size(); j++){
+    for (size_t i = 0; i < pairs.size(); i++){
+		if (pairs[i].first == main_chain[j])
+		{
+			pend_chain.push_back(pairs[i].second);
+			break;
+		}}}
+
+  // insert first element of pend_chain because it b1 < a1 and a1 < a2 < a3 ...
+  main_chain.insert(main_chain.begin(), pend_chain[0]);
+
+  // get pend chain insert order from jacobsthal sequence
+  std::deque<int> order = pendIsertOrderDeq(pend_chain.size());
+
+  //std::cout << "main_chain: ";
+  //printRange(main_chain.begin(), main_chain.end());
+
+  size_t insert_count = 1;
+  for (size_t i = 0; i < order.size(); i++)
+  {
+	  //int worst_ak_pos = std::min(order[i]+insert_count, main_chain.size());
+	  int worst_ak_pos = order[i]+insert_count;
+	  binaryInsert(main_chain, main_chain.begin() + worst_ak_pos, pend_chain[order[i]-1]);
+	  insert_count++;
+  }
+  if(straggler)
+	  binaryInsert(main_chain, main_chain.end(), straggler);
+  container = main_chain;
+}
+
+void displayInterval(std::string container_name, size_t size, struct timeval &start,  struct timeval &end) {
+    double elapsed =
+        (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec);
+    std::cout << "Time to process a range of " << size 
+              << " elements with std::" << container_name << " : " << elapsed
+              << " us" << std::endl;
+  }

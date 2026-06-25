@@ -15,7 +15,12 @@
 std::vector<int> pendIsertOrderVec(size_t size);
 std::deque<int> pendIsertOrderDeq(size_t size);
 
+void fJSortDeq(std::deque<int> &container);
+void fJSortVec(std::vector<int> &container);
 
+void displayInterval(std::string container_name, size_t size, struct timeval &start,  struct timeval &end);
+
+// templates
 template <typename C>
 void validateInput(C &input, char **sequence) {
   int tmp_var;
