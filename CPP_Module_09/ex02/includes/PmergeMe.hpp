@@ -3,6 +3,8 @@
 
 // member functions
 
+#include <algorithm>
+#include <deque>
 #include <set>
 #include <sstream>
 #include <stdexcept>
@@ -10,7 +12,9 @@
 #include <vector>
 
 // functions
-std::vector<int> pendIsertOrder(size_t size);
+std::vector<int> pendIsertOrderVec(size_t size);
+std::deque<int> pendIsertOrderDeq(size_t size);
+
 
 template <typename C>
 void validateInput(C &input, char **sequence) {
@@ -37,6 +41,13 @@ void printRange(Iterator start, Iterator end)
 	while (start != end)
 		std::cout << *start++ << " ";
 	std::cout << std::endl;
+}
+
+template<typename C>
+void binaryInsert(C &container, typename C::iterator end, int value)
+{
+	typename C::iterator it = std::upper_bound(container.begin(), end, value);
+	container.insert(it, value);
 }
 
 #endif
