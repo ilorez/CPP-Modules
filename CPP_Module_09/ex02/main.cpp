@@ -1,8 +1,10 @@
 #include "includes/PmergeMe.hpp"
+#include <sys/time.h>
 #include <cstdlib>
 #include <deque>
 #include <exception>
 #include <iostream>
+#include <sys/select.h>
 #include <vector>
 
 
@@ -14,20 +16,35 @@ int main(int argc, char **argv)
     return (EXIT_FAILURE);
   }
   try {
-    PmergeMe<std::vector> vec;
-	vec.sort(argv);
+	  struct timeval start, end;
+	  std::vector<int> vec;
+	  std::deque<int> deq;
 
-    PmergeMe<std::deque> deq;
-	deq.sort(argv);
+	  validateInput(vec, argv);
+	  validateInput(deq, argv);
 
-	// Display Info
-	vec.displayInput();
-	vec.displayMainChain();
-	vec.displayInterval("std::vector");
-	deq.displayInterval("std::deque");
+	  std::cout <<  "Before: ";
+	  printRange(vec.begin(), vec.end());
 
-	// DEBUG
-    //re.printAll();
+	  gettimeofday(&start, NULL);
+	  // run algo on vec
+	  gettimeofday(&end, NULL);
+	  // print after
+
+	  std::cout <<  "Before: ";
+	  printRange(deq.begin(), deq.end());
+	  gettimeofday(&start, NULL);
+	  // run algo on deq
+	  gettimeofday(&end, NULL);
+	  // print after
+
+
+	  // print elapsed time interval
+	
+	  // DEBUG
+	  //std::vector<int> order = pendIsertOrder(vec[0]); 
+	  //printRange(order.begin(), order.end());
+	
   } catch (std::exception &e) {
     std::cerr << "Error: " << e.what() << std::endl;
     return (EXIT_FAILURE);
