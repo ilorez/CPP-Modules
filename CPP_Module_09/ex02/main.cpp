@@ -1,12 +1,5 @@
 #include "includes/PmergeMe.hpp"
-#include <algorithm>
-#include <cstdlib>
-#include <deque>
-#include <exception>
-#include <iostream>
-#include <sys/select.h>
 #include <sys/time.h>
-#include <vector>
 
 
 
@@ -18,9 +11,9 @@ int main(int argc, char **argv) {
   }
   try {
     struct timeval start, end;
-    std::vector<int> vec;
 
 	// Vector
+    std::vector<int> vec;
     validateInput(vec, argv);
     std::cout << "Before: ";
     printRange(vec.begin(), vec.end());
@@ -39,14 +32,12 @@ int main(int argc, char **argv) {
     std::cout << "Before: ";
     printRange(deq.begin(), deq.end());
     gettimeofday(&start, NULL);
-	fJSortVec(vec);
+	fJSortDeq(deq);
     gettimeofday(&end, NULL);
 	std::cout << "After: ";
-    printRange(vec.begin(), vec.end());
-	displayInterval("deque", vec.size(), start, end);
+    printRange(deq.begin(), deq.end());
+	displayInterval("deque", deq.size(), start, end);
 
-
-	
 
     // DEBUG
     // std::vector<int> order = pendIsertOrder(vec[0]);
